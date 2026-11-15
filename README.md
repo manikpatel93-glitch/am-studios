@@ -12,7 +12,7 @@ A modern one-page site for amStudios — plain HTML, CSS and JavaScript. No buil
 
 ## Before you publish (5 minutes)
 
-1. **Contact form** — go to https://web3forms.com, enter the email where you want briefs to arrive, and paste the free access key into `main.js` → `CONFIG.web3formsKey`. Free plan: 250 messages a month. Also set `CONFIG.contactEmail` (shown if sending fails).
+1. **Contact form** — briefs are emailed by FormSubmit (https://formsubmit.co, free, no sign-up) to `CONFIG.formTo` in `main.js`. The first brief after changing the address sends an "Activate Form" email there; click it once. Afterwards FormSubmit gives you a random alias you can paste in place of the address so it isn't visible in the page code. (Alternative: Web3Forms with a free access key.)
 2. **Prices** — the Starter ($149) and Pro ($449) prices in `index.html` are placeholders. Change them to your real prices.
 3. **Turnaround** — the FAQ says "3–7 days" for a 60 s explainer and "reply within 24 hours". Adjust if needed.
 

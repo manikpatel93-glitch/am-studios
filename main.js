@@ -2,11 +2,12 @@
 
 // ── Edit these two lines before you publish ─────────────────────────────
 const CONFIG = {
-  // Free key from https://web3forms.com (enter your email there, they send the key).
-  // Form messages then arrive in your inbox. Leave as-is to fall back to an email link.
-  web3formsKey: "YOUR_WEB3FORMS_ACCESS_KEY",
-  // Used only when no Web3Forms key is set: opens the visitor's email app.
-  contactEmail: "hello@your-domain.com",
+  // Briefs are emailed here by FormSubmit (free, no sign-up): https://formsubmit.co
+  // The first brief sends an "Activate" email to this address; click it once.
+  // FormSubmit then shows a random alias — paste it here instead of the email to hide the address.
+  formTo: "manikpatel93@gmail.com",
+  // Shown to visitors only if sending fails.
+  contactEmail: "manikpatel93@gmail.com",
 };
 // ────────────────────────────────────────────────────────────────────────
 
@@ -89,7 +90,7 @@ document.querySelectorAll("[data-plan]").forEach((a) => a.addEventListener("clic
   document.getElementById("package").value = a.dataset.plan.replace("&amp;", "&");
 }));
 
-// Contact form → Web3Forms (free), or an email link if no key is set
+// Contact form → FormSubmit (free) emails the brief to CONFIG.formTo
 const form = document.getElementById("contact-form");
 const status = form.querySelector(".form__status");
 form.addEventListener("submit", async (e) => {
@@ -105,22 +106,23 @@ form.addEventListener("submit", async (e) => {
   const data = Object.fromEntries(new FormData(form));
   if (data.botcheck) return; // spam bot filled the hidden box
 
-  if (!CONFIG.web3formsKey || CONFIG.web3formsKey.startsWith("YOUR_")) {
-    const body = `Name: ${data.name}\nEmail: ${data.email}\nCompany: ${data.company || "-"}\nVideo type: ${data.type}\nPackage: ${data.package}\n\n${data.message}`;
-    window.location.href = `mailto:${CONFIG.contactEmail}?subject=${encodeURIComponent("New video brief from " + data.name)}&body=${encodeURIComponent(body)}`;
-    return;
-  }
-
+  delete data.botcheck;
   const btn = form.querySelector("button[type=submit]");
   btn.disabled = true; status.className = "form__status"; status.textContent = "Sending…";
   try {
-    const res = await fetch("https://api.web3forms.com/submit", {
+    const res = await fetch(`https://formsubmit.co/ajax/${CONFIG.formTo}`, {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify({ ...data, access_key: CONFIG.web3formsKey, subject: `New video brief from ${data.name}`, from_name: "amStudios website" }),
+      body: JSON.stringify({
+        ...data,
+        _subject: `New video brief from ${data.name} (${data.type})`,
+        _replyto: data.email,
+        _template: "table",
+        _captcha: "false",
+      }),
     });
     const json = await res.json();
-    if (!json.success) throw new Error(json.message);
+    if (String(json.success) !== "true") throw new Error(json.message);
     form.reset();
     status.className = "form__status ok";
     status.textContent = "Thanks! Your brief is in — we'll reply within one business day.";
