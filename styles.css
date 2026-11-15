@@ -209,6 +209,16 @@ p { margin: 0 0 1em; }
 .why__item h3 { font-size: 1.15rem; }
 .why__item p { color: var(--muted); margin: 0; }
 
+/* Reviews */
+.reviews { display: grid; gap: 16px; grid-template-columns: 1fr; }
+@media (min-width: 720px) { .reviews { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .reviews { grid-template-columns: repeat(3, 1fr); } }
+.review { margin: 0; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; gap: 16px; }
+.review__stars { color: #ffc95c; letter-spacing: 2px; }
+.review blockquote { margin: 0; font-size: 1.05rem; line-height: 1.6; flex: 1; }
+.review figcaption { display: grid; gap: 2px; }
+.review figcaption span { color: var(--muted); font-size: .9rem; }
+
 /* Pricing */
 .plans { display: grid; gap: 16px; grid-template-columns: 1fr; align-items: stretch; }
 @media (min-width: 900px) { .plans { grid-template-columns: repeat(3, 1fr); } }
