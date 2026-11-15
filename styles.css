@@ -247,6 +247,12 @@ p { margin: 0 0 1em; }
 .contact__grid { position: relative; display: grid; gap: 40px; }
 @media (min-width: 1000px) { .contact__grid { grid-template-columns: 1fr 1.1fr; gap: 64px; align-items: start; } }
 .contact__points { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 10px; color: var(--muted); }
+.fiverr { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); }
+.fiverr p { color: var(--muted); margin-bottom: 12px; }
+.btn--fiverr { background: #1dbf73; color: #fff; }
+.btn--fiverr b { font-weight: 800; letter-spacing: -0.02em; }
+.btn--fiverr:hover { box-shadow: 0 10px 30px -10px rgba(29,191,115,.7); }
+.footer__link { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
 .form { background: var(--card); border: 1px solid var(--line); border-radius: 24px; padding: 24px; display: grid; gap: 16px; }
 @media (min-width: 720px) { .form { padding: 32px; } }
 .form__row { display: grid; gap: 16px; }
