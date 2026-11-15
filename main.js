@@ -5,9 +5,9 @@ const CONFIG = {
   // Briefs are emailed here by FormSubmit (free, no sign-up): https://formsubmit.co
   // The first brief sends an "Activate" email to this address; click it once.
   // FormSubmit then shows a random alias — paste it here instead of the email to hide the address.
-  formTo: "manikpatel93@gmail.com",
+  formTo: "kinamservices@gmail.com",
   // Shown to visitors only if sending fails.
-  contactEmail: "manikpatel93@gmail.com",
+  contactEmail: "kinamservices@gmail.com",
 };
 // ────────────────────────────────────────────────────────────────────────
 
